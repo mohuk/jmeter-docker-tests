@@ -1,0 +1,59 @@
+{
+	"firstName":"LoadTest",
+	"lastName":"DataSetOne",
+	"address": "House No. ABC  Street 17 Gulberg Lahore",
+	"commuteRadius": 29,
+	"workingHours": 29,
+	"title": "Senior Accounts Officer",
+	"skills": [{
+			"id": "${Skill0}",
+			"experience": 1,
+			"rank": 1,
+			"proficiency": "expert"
+		}, {
+			"id": "${Skill1}",
+			"experience": 2,
+			"rank": 2,
+			"proficiency": "advanced"
+		},
+		{
+			"id": "${Skill8}",
+			"experience": 1,
+			"rank": 3,
+			"proficiency": "expert"
+		}, {
+			"id": "${Skill9}",
+			"experience": 2,
+			"rank": 4,
+			"proficiency": "advanced"
+		}
+	],
+	"behavioralSkills": ["${Skill71}", "${Skill72}"],
+	"hourlyRate": {
+		"min": 75,
+		"max": 100
+	},
+	"areaOfExpertise": [{
+			"id": "${AOE_accounting}",
+			"experience": 3
+		},
+		{
+			"id": "${AOE_marketing}",
+			"experience": 3
+		}
+	],
+	"workExperience": [],
+	"education": [{
+		"institution": "NED",
+		"degree": "MSC",
+		"startDate": 1364756400000,
+		"isCurrent": true,
+		"skills": ["grant writing"]
+	}],
+	"artifacts": [{
+		"title": "MY new artifact",
+		"relatedExperience": "MSC",
+		"skills": ["Tax Preparation"],
+		"urls": ["${TechURL}"]
+	}]
+}

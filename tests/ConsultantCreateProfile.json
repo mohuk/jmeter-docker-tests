@@ -1,0 +1,84 @@
+{
+    "title": "${title}",
+    "education": [
+        {
+            "institution": "FAST-NUCES",
+            "degree": "${degree}",
+             "major": "${major}",
+            "startDate": 1498044967106,
+ 	    "isCurrent": true
+        },
+        {
+            "institution": "${institution}",
+            "degree": "${degree}",
+             "major": "bsc",
+            "startDate": ${startDateE},
+            "endDate": ${endDateE},
+            "skills": [
+                "${skillsE1}",
+                "${skillsE2}"
+            ]  
+        }
+    ], 
+	"certification": [
+        {
+            "institution": "${institutionC}",
+            "certification": "${certification}",
+            "startDate": ${startDateC},
+            "endDate": ${endDateC},
+            "description": "werafasfd"
+        }
+    ],
+    "workExperience": [
+        {
+            "company": "${company}",
+            "jobTitle": "${jobTitle}",
+            "startDate": ${startDateW},
+			 "endDate": ${endDateW},
+            "skills": [
+                "${skillsW1}",
+                "${skillsW2}"
+            ]
+        }
+    ],
+    "skills": [
+        {
+            "id": "${Skill10}",
+            "rank": ${rank1},
+            "experience": ${exp1}
+        },
+        {
+            "id": "${Skill4}",
+            "rank": ${rank2},
+            "experience": ${exp2}
+        }
+    ],
+    "artifacts": [
+        {
+            "urls": ["${artifactURL}"],
+            "title": "${titleA}",
+            "description": "Here are some details",
+            "relatedExperience": "${jobTitle}",
+            "skills": ["${skillsA}"]
+        }
+    ],
+    "jobDescription": "${jobDescription}",
+    "workingHours": ${workHours},
+	 "areaOfExpertise": [
+        {
+            "id": "${AOE_accounting}",
+            "experience": ${YOE1}
+        },
+        {
+            "id": "${AOE_marketing}",
+            "experience": ${YOE2}
+        }
+    ],
+  
+    "hourlyRate": {
+        "min": ${minhourlyRate},
+        "max": ${maxhourlyRate}
+    },
+    "address": "${address}",
+    "commuteRadius": ${commuteRadius}
+}

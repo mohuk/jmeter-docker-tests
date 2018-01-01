@@ -1,0 +1,61 @@
+{   "projectName": "${projectName}", 
+    "title": "${title}",
+    "description": "${description}",
+    "hoursPerWeek": {
+        "min": ${minhoursPerWeek},
+        "max": ${maxhoursPerWeek}
+        
+    },
+   "locations": ${locationId},
+            "isRemote": true } ],
+    "deadline": ${deadline},
+    "startDate": ${startDate},
+	"endDate":  ${endDate},
+    "isOpenEnded": false,
+    "hourlyPayRate": {
+        "min": ${minhourlyPayRate},
+        "max": ${maxhourlyPayRate}
+    },
+    "areaOfExpertise": [
+        {
+            "id": "${AOE_accounting}",
+            "isRequired": true,
+            "experience": {
+                "value": ${areaOfExpertise-experience1},
+                "isRequired": true
+            }
+        },
+        {
+            "id": "${AOE_marketing}",
+            "isRequired": false,
+            "experience": {
+                "value": ${areaOfExpertise-experience2},
+                "isRequired": true
+            }
+        }
+    ],
+    "skills": [
+        {
+            "id": "${Skill4}",
+            "experience": 3,
+            "rank": ${skills-rank1}
+            
+        },
+        {
+            "id": "${Skill10}",
+            "rank": ${skills-rank2},
+            "experience": 4
+        }
+        
+    ],
+    "visibility": true,
+    "technicalQuestions": {
+        "questions": "Hello this is my technical Question",
+        "urls": []
+    },
+    "nonTechnicalQuestions": {
+        "questions": "Hello this is my behavioral Question",
+        "urls": [ ]
+    },
+    "isDraft": false
+}

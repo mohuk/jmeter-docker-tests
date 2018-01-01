@@ -1,0 +1,42 @@
+{
+	"firstName":"LoadTest",
+	"lastName":"DataSetTwo",
+	"address": "House No. ABC  Street 17 Gulberg Lahore",
+	"commuteRadius": 29,
+	"workingHours": 29,
+	"title": "Accounts Officer",
+	"skills": [{
+		"id": "${Skill24}",
+		"experience": 1,
+		"rank": 5,
+		"proficiency": "expert"
+	}, {
+		"id": "${Skill25}",
+		"experience": 2,
+		"rank": 6,
+		"proficiency": "advanced"
+	}],
+	"behavioralSkills": ["${Skill71}", "${Skill72}"],
+	"hourlyRate": {
+		"min": 75,
+		"max": 100
+	},
+	"areaOfExpertise": [{
+		"id": "${AOE_SoftwareDev}",
+		"experience": 3
+	}],
+	"workExperience": [],
+	"education": [{
+		"institution": "NED",
+		"degree": "MSC",
+		"startDate": 1364756400000,
+		"isCurrent": true,
+		"skills": ["grant writing"]
+	}],
+	"artifacts": [{
+		"title": "MY new artifact",
+		"relatedExperience": "MSC",
+		"skills": ["Tax Preparation"],
+		"urls": ["${TechURL}"]
+	}]
+}

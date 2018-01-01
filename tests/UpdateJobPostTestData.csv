@@ -1,0 +1,18 @@
+Saved as Draft/Post,test.description,projectName,title,description,minhoursPerWeek,maxhoursPerWeek,startDate,isOpenEnded,deadline,minhourlyPayRate,maxhourlyPayRate,areaOfExpertise-experience1,areaOfExpertise-experience2,skills-rank1,skills-rank2,http.method,input.json,assertion
+Post,Send NULL JobTitle,ABCD project,,I work: hours=40,10,20,1598940000000,true,1596260000000,15,150,20+,10,1,2,PUT,UpdateJob.json,Job Title cannot be empty
+Post,Send Blank JobTitle,ABCD project,  ,sal is $500+,20,30,1598940000000,true,1596260000000,200,200,15,1,1,2,PUT,UpdateJob.json,Job Title cannot be empty
+Post,Send Hours per Week= negative number,ABCD project,.Net Developer,I work: hours=40,10,-20,1598940000000,true,1596260000000,15,150,20+,10,1,2,PUT,UpdateJob.json,Job hoursPerWeek cannot be less than 1
+Post,Send Hours per Week= min range 9,ABCD project,.Net Developer,I work: hours=40,8,20,1598940000000,true,1596260000000,15,150,10,5,1,2,PUT,UpdateJob.json,Job hoursPerWeek cannot be less than 1
+Post,Send Hours per Week= max range 50,ABCD project,php,sal is $500+,20,50,1598940000000,true,1596260000000,200,200,20+,10,1,2,PUT,UpdateJob.json,Job hoursPerWeek cannot be greater than 41
+Post,Send Hours per Week= min range 20 and max range 10,ABCD project,.Net Developer,I work: hours=40,20,10,1598940000000,true,1596260000000,15,150,15,1,1,2,PUT,UpdateJob.json,Job hoursPerWeek min value must be less than or equal to max value
+Post,Send Hourly Pay Rate= negative number,ABCD project,.Net Developer,I work: hours=40,10,20,1598940000000,true,1596260000000,-15,150,20+,10,1,2,PUT,UpdateJob.json,min hourlyPayRate cannot be less than 1
+Post,Send Hourly Pay Rate= min range 0,ABCD project,.Net Developer,I work: hours=40,10,20,1598940000000,true,1596260000000,0,150,10,5,1,2,PUT,UpdateJob.json,min hourlyPayRate cannot be less than 1
+Post,Send Hourly Pay Rate= max range 220,ABCD project,php,sal is $500+,20,30,1598940000000,true,1596260000000,200,220,20+,10,1,2,PUT,UpdateJob.json,max hourlyPayRate cannot be greater than 201
+Post,Send Hourly Pay Rate= min range 150 and max range 100,ABCD project,.Net Developer,I work: hours=40,10,20,1598940000000,true,1596260000000,150,100,15,1,1,2,PUT,UpdateJob.json,hourlyPayRate min value must be less than or equal to max value
+Post,Send YOE= negative numeric data,ABCD project,.Net Developer,I work: hours=40,10,20,1598940000000,true,1596260000000,15,150,-10,5,1,2,PUT,UpdateJob.json,Job Experience's Value cannot be less than 0
+Post,Send YOE > 20,ABCD project,php,sal is $500+,20,30,1598940000000,true,1596260000000,200,200,35,10,1,2,PUT,UpdateJob.json,Job Experience's Value cannot be greater than 21
+Post,Send Skill Rank = 0,ABCD project,.Net Developer,I work: hours=40,10,20,1598940000000,true,1596260000000,15,150,20+,10,0,2,PUT,UpdateJob.json,Skill Rank Value cannot be less than 1
+Post,Send Skill Rank = 11,ABCD project,.Net Developer,I work: hours=40,10,20,1598940000000,true,1596260000000,15,150,20+,10,11,2,PUT,UpdateJob.json,Skill Rank Value cannot be greater than 10
+Post,Send same Skill Rank twice,ABCD project,php,sal is $500+,20,30,1598940000000,true,1596260000000,200,200,15,1,1,1,PUT,UpdateJob.json,Skill Rank must be unique
+Post,Send Skill Rank = -2,ABCD project,.Net Developer,I work: hours=40,10,20,1598940000000,true,1596260000000,15,150,10,5,-1,2,PUT,UpdateJob.json,Skill Rank Value cannot be less than 1
+Post,deadline > SD if SD=FD and ED=OE,ABCD project,.Net Developer,I work: hours=40,10,20,1608440000000,true,1609480000000,15,150,20+,10,1,2,PUT,UpdateJob.json,jobDeadline must be less than start date for job starting immediatly or for future job it must be less than end 

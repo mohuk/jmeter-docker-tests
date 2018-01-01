@@ -1,0 +1,24 @@
+{
+    "companyName": "${companyName}",
+    "website": "${website}",
+    "companyDescription": "This is my company",
+    "specialities": [
+        "Web Designing",
+        "Web Development"
+    ],
+    "additionalSpecialities": [
+        "Apps",
+        "DevOps"
+    ],
+    "locations": [
+        {
+            "city": "${city1}",
+            "state": "${state1}",
+            "zipCode": "${zipCode1}",
+            "address1": "${address1}",
+            "address2": "Dhoraji",
+            "phone": "${phone}",
+            "isHeadquarter": true
+        }
+    ]
+}
