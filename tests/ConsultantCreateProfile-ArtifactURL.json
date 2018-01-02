@@ -1,0 +1,79 @@
+{
+    "title": "${title}",
+    "education": [
+        {
+            "institution": "FAST-NUCES",
+            "degree": "bscs",
+            "startDate": 1498044967106,
+ 	    "isCurrent": true
+        },
+        {
+            "institution": "${institution}",
+            "degree": "${degree}",
+            "startDate": 1498044967106,
+            "endDate": 1498044967106,
+            "skills": [
+                "${skillsE1}",
+                "${skillsE2}"
+            ]  
+        }
+    ], 
+    "workExperience": [
+        {
+            "company": "${company}",
+            "jobTitle": "${jobTitle}",
+            "startDate": 1498044967106,
+            "skills": [
+                "${skillsW1}",
+                "${skillsW2}"
+            ],
+            "isCurrent": true
+        }
+    ],
+    "skills": [
+        {
+            "id": "${skills-id1}",
+            "rank": ${rank1},
+            "proficiency": "${proLevel1}",
+            "experience": ${exp1}
+        },
+        {
+            "id": "${skills-id2}",
+            "rank": ${rank2},
+            "proficiency": "${proLevel2}",
+            "experience": ${exp2}
+        }
+    ],
+   "behavioralSkills": [
+        "${BehavioralSkill1}",
+        "${BehavioralSkill2}"
+    ],
+    "artifacts": [
+        {
+            "urls": ["${urlA}"],
+            "title": "${titleA}",
+            "description": "${descriptionA}",
+            "relatedExperience": "${degree}",
+            "skills": ["${skillsA}"]
+        }
+    ],
+    "jobDescription": "${jobDescription}",
+    "workingHours": ${workHours},
+	 "areaOfExpertise": [
+        {
+            "id": "${AOE-id1}",
+            "experience": ${YOE1}
+        },
+        {
+            "id": "${AOE-id2}",
+            "experience": ${YOE2}
+        }
+    ],
+  
+    "hourlyRate": {
+        "min": ${minhourlyRate},
+        "max": ${maxhourlyRate}
+    },
+    "address": "${address}",
+    "commuteRadius": ${commuteRadius}
+}

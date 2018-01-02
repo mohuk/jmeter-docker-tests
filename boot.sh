@@ -8,7 +8,7 @@ echo "Setting up OrientDB"
 docker run --network=cherry --network-alias=orientdb -d -p 2424:2424 -p 2480:2480 -e ORIENTDB_ROOT_PASSWORD=rootpwd --name orientdb orientdb:2.2.28-spatial
 ODB_CONTAINER_ID=$(docker ps -q --filter name=orientdb)
 echo "Waiting for OrientDB to get started"
-sleep 5
+sleep 10
 echo "OrientDB is up - executing command"
 docker exec $ODB_CONTAINER_ID /bin/ash -c "echo CREATE DATABASE remote:localhost/cherry root rootpwd plocal >> /orientdb/startup"
 docker exec $ODB_CONTAINER_ID /bin/ash -c "echo CREATE USER cherry IDENTIFIED BY cherry ROLE admin >> /orientdb/startup"
@@ -31,6 +31,7 @@ docker run --name cherrytest --network=cherry cherry-test
 TEST_CONTAINER_ID=$(docker ps -aq --filter name=cherrytest)
 rm -rf result
 docker cp $TEST_CONTAINER_ID:/home/cherry/testfolder ./result
+docker cp $TEST_CONTAINER_ID:/home/cherry/jmeter.log ./result/jmeter.log
 
 echo "Tearing down"
 
