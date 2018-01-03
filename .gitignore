@@ -2,3 +2,4 @@ result
 .idea
 tests/jmeter.log
 testreport.jtl
+api.env
