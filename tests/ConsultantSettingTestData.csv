@@ -1,6 +1,5 @@
 test.description,firstName,lastName,phone,assertion
 Null First Name,,Siddiqa,98745632,First Name cannot be empty for consultant
 Null Last Name,Ayesha,,98745632,Last Name cannot be empty for consultant
-Null Phone Number,Ayesha,Siddiqa,,Phone cannot be empty for consultant
 Phone Number=Letters,Ayesha,Siddiqa,abcdefg,Phone number can only contain digits or '+', '-', '(', ')' characters
-Phone Number>20Chars,Ayesha,Siddiqa,111111111111222222321,Phone number can only contain digits or '+', '-', '(', ')' characters
+Phone Number>20Chars,Ayesha,Siddiqa,111111111111222222321,Phone length cannot be greater than 20 characters

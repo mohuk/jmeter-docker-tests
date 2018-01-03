@@ -199,19 +199,13 @@ WDS.sampleResult.sampleEnd();
           <hashTree/>
           <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_IT" enabled="true">
             <stringProp name="JSONPostProcessor.referenceNames">AOE_IT</stringProp>
-            <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
             <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
           </JSONPostProcessor>
           <hashTree/>
           <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_writing" enabled="true">
             <stringProp name="JSONPostProcessor.referenceNames">AOE_writing</stringProp>
             <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;Writing &amp; Editing&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
-            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-          </JSONPostProcessor>
-          <hashTree/>
-          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_behavior" enabled="false">
-            <stringProp name="JSONPostProcessor.referenceNames">AOE_behavior</stringProp>
-            <stringProp name="JSONPostProcessor.jsonPathExprs"> $.[6].id</stringProp>
             <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
           </JSONPostProcessor>
           <hashTree/>
@@ -249,7 +243,7 @@ WDS.sampleResult.sampleEnd();
           <hashTree/>
           <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="IT services_Skills" enabled="true">
             <stringProp name="JSONPostProcessor.referenceNames">Skill57;Skill58;Skill59;Skill60;Skill61</stringProp>
-            <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos;)].skills[0].id;$..[?(@.name == &apos;IT services&apos;)].skills[1].id;$..[?(@.name == &apos;IT services&apos;)].skills[2].id;$..[?(@.name == &apos;IT services&apos;)].skills[3].id;$..[?(@.name == &apos;IT services&apos;)].skills[4].id</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos;)].skills[0].id;$..[?(@.name == &apos;IT Services&apos;)].skills[1].id;$..[?(@.name == &apos;IT Services&apos;)].skills[2].id;$..[?(@.name == &apos;IT Services&apos;)].skills[3].id;$..[?(@.name == &apos;IT Services&apos;)].skills[4].id</stringProp>
             <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             <stringProp name="Sample.scope">all</stringProp>
             <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>
@@ -263,14 +257,222 @@ WDS.sampleResult.sampleEnd();
             <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0;0;0;0;0</stringProp>
           </JSONPostProcessor>
           <hashTree/>
-          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Behavior_Skills" enabled="false">
-            <stringProp name="JSONPostProcessor.referenceNames">Skill71;Skill72;Skill73;Skill74;Skill75</stringProp>
-            <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;Behavior&apos;)].skills[0].id;$..[?(@.name == &apos;Behavior&apos;)].skills[1].id;$..[?(@.name == &apos;Behavior&apos;)].skills[2].id;$..[?(@.name == &apos;Behavior&apos;)].skills[3].id;$..[?(@.name == &apos;Behavior&apos;)].skills[4].id</stringProp>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Emp - GetMyProfile" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${__P(base_URL)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(port)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(http_protocol)}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${__P(api_version)}/profile/me</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">vars.put(&quot;token&quot;, props.get(&quot;empaccesstoken&quot;))</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">emp_hasOnboarded</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.hasOnboarded</stringProp>
             <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
-            <stringProp name="Sample.scope">all</stringProp>
-            <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>
           </JSONPostProcessor>
           <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Cons - GetMyProfile" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${__P(base_URL)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(port)}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(http_protocol)}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${__P(api_version)}/profile/me</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">vars.put(&quot;token&quot;, props.get(&quot;consaccesstoken&quot;))</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">cons_hasOnboarded</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.hasOnboarded</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="IF_EMP_ONBOARD=FALSE" enabled="true">
+          <stringProp name="IfController.condition">${emp_hasOnboarded} == false</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create Employer" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;companyName&quot;: &quot;${__RandomString(10,abcdefghijklmnopqrstuvwxyz,)}&quot;,&#xd;
+	&quot;website&quot;: &quot;&quot;,&#xd;
+	&quot;specialities&quot;: [],&#xd;
+	&quot;additionalSpecialities&quot;: [&quot;Apps&quot;, &quot;DevOps&quot;],&#xd;
+	&quot;companyDescription&quot;: &quot;This is my company&quot;,&#xd;
+	&quot;locations&quot;: [{&#xd;
+		&quot;address1&quot;: &quot;Flat#20&quot;,&#xd;
+		&quot;address2&quot;: &quot;Dhoraji&quot;,&#xd;
+		&quot;city&quot;: &quot;Lahore&quot;,&#xd;
+		&quot;state&quot;: &quot;pak&quot;,&#xd;
+		&quot;zipCode&quot;: &quot;97460&quot;,&#xd;
+		&quot;phone&quot;: &quot;343302356&quot;,&#xd;
+		&quot;isHeadquarter&quot;: true&#xd;
+	}]&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${__P(base_URL)}</stringProp>
+            <stringProp name="HTTPSampler.port">${__P(port)}</stringProp>
+            <stringProp name="HTTPSampler.protocol">${__P(http_protocol)}</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">${__P(api_version)}/employers</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">vars.put(&quot;token&quot;, props.get(&quot;empaccesstoken&quot;))</stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49587">201</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">true</boolProp>
+              <intProp name="Assertion.test_type">48</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="IF_CONS_ONBOARD=FALSE" enabled="true">
+          <stringProp name="IfController.condition">${cons_hasOnboarded} == false</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create Consultant" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;firstName&quot;: &quot;Richard&quot;,&#xd;
+	&quot;lastName&quot;: &quot;Branson&quot;,&#xd;
+	&quot;address&quot;: &quot;House No. ABC  Street 17 Gulberg Lahore&quot;,&#xd;
+	&quot;commuteRadius&quot;: 29,&#xd;
+	&quot;workingHours&quot;: 29,&#xd;
+	&quot;title&quot;: &quot;Accounts Officer&quot;,&#xd;
+	&quot;skills&quot;: [{&#xd;
+		&quot;id&quot;: &quot;${Skill0}&quot;,&#xd;
+		&quot;experience&quot;: 1,&#xd;
+		&quot;rank&quot;: 1,&#xd;
+		&quot;proficiency&quot;: &quot;expert&quot;&#xd;
+	}, {&#xd;
+		&quot;id&quot;: &quot;${Skill1}&quot;,&#xd;
+		&quot;experience&quot;: 2,&#xd;
+		&quot;rank&quot;: 2,&#xd;
+		&quot;proficiency&quot;: &quot;advanced&quot;&#xd;
+	}],&#xd;
+	&quot;hourlyRate&quot;: {&#xd;
+		&quot;min&quot;: 75,&#xd;
+		&quot;max&quot;: 100&#xd;
+	},&#xd;
+	&quot;areaOfExpertise&quot;: [{&#xd;
+		&quot;id&quot;: &quot;${AOE_accounting}&quot;,&#xd;
+		&quot;experience&quot;: 3&#xd;
+	}],&#xd;
+	&quot;workExperience&quot;: [],&#xd;
+	&quot;education&quot;: [{&#xd;
+		&quot;institution&quot;: &quot;NED&quot;,&#xd;
+		&quot;degree&quot;: &quot;Bachelors&quot;,&#xd;
+		&quot;major&quot;: &quot;Science&quot;,&#xd;
+		&quot;startDate&quot;: 1364756400000,&#xd;
+		&quot;isCurrent&quot;: true,&#xd;
+		&quot;description&quot;: &quot;Test Education certificate&quot;,&#xd;
+		&quot;skills&quot;: [&quot;grant writing&quot;]&#xd;
+	}],&#xd;
+	&quot;artifacts&quot;: []&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${__P(base_URL)}</stringProp>
+            <stringProp name="HTTPSampler.port">${__P(port)}</stringProp>
+            <stringProp name="HTTPSampler.protocol">${__P(http_protocol)}</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">${__P(api_version)}/consultants</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">vars.put(&quot;token&quot;, props.get(&quot;consaccesstoken&quot;))</stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49587">201</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Test Sample Values" enabled="true">
           <stringProp name="TestPlan.comments">This Controller provides TermID and Consultant IDs</stringProp>
@@ -637,7 +839,7 @@ if(parseInt(profileScore_Exp) != parseInt(profileScore_act)){
             </JSR223Assertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Consultant - Get Consultant Applications" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Consultant - Get Consultant Applications" enabled="false">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -682,7 +884,7 @@ if(parseInt(profileScore_Exp) != parseInt(profileScore_act)){
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="JPLP Matches" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="JPLP Matches" enabled="false">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -775,165 +977,6 @@ if(parseInt(profileScore_Exp) != parseInt(profileScore_act)){
             </JSR223Assertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ME call" enabled="false">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-              <collectionProp name="Arguments.arguments"/>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(base_URL)}</stringProp>
-            <stringProp name="HTTPSampler.port">${__P(port)}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${__P(http_protocol)}</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">${__P(api_version)}/profile/me</stringProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-            <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          </HTTPSamplerProxy>
-          <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="script">vars.put(&quot;token&quot;, props.get(&quot;consaccesstoken&quot;))</stringProp>
-            </BeanShellPreProcessor>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get Consultant ID" enabled="true">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">cons_Id</stringProp>
-              <stringProp name="RegexExtractor.regex">\,&quot;id&quot;:&quot;(.+?)&quot;</stringProp>
-              <stringProp name="RegexExtractor.template">$1$</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number">1</stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get Consultant Email" enabled="true">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">cons_email</stringProp>
-              <stringProp name="RegexExtractor.regex">&quot;email&quot;:&quot;(.+?)&quot;</stringProp>
-              <stringProp name="RegexExtractor.template">$1$</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number">1</stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="Get cons_skills" enabled="true">
-              <stringProp name="VAR">cons_skills</stringProp>
-              <stringProp name="JSONPATH">artifacts[0].skills[0]</stringProp>
-              <stringProp name="DEFAULT"></stringProp>
-              <stringProp name="VARIABLE"></stringProp>
-              <stringProp name="SUBJECT">BODY</stringProp>
-            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
-            <hashTree/>
-            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="Get cons_title" enabled="true">
-              <stringProp name="VAR">cons_title</stringProp>
-              <stringProp name="JSONPATH">artifacts[0].title</stringProp>
-              <stringProp name="DEFAULT"></stringProp>
-              <stringProp name="VARIABLE"></stringProp>
-              <stringProp name="SUBJECT">BODY</stringProp>
-            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
-            <hashTree/>
-            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="Get cons_relatedExperience" enabled="true">
-              <stringProp name="VAR">cons_relatedExperience</stringProp>
-              <stringProp name="JSONPATH">artifacts[0].relatedExperience</stringProp>
-              <stringProp name="DEFAULT"></stringProp>
-              <stringProp name="VARIABLE"></stringProp>
-              <stringProp name="SUBJECT">BODY</stringProp>
-            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
-            <hashTree/>
-            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="Get cons_art_url" enabled="true">
-              <stringProp name="VAR">cons_art_url</stringProp>
-              <stringProp name="JSONPATH">artifacts[0].files[0].url</stringProp>
-              <stringProp name="DEFAULT"></stringProp>
-              <stringProp name="VARIABLE"></stringProp>
-              <stringProp name="SUBJECT">BODY</stringProp>
-            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
-            <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Get ProfileCompletenessScore" enabled="true">
-              <stringProp name="JSONPostProcessor.referenceNames">profileCompletenessScore</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">profileCompletenessScore</stringProp>
-              <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
-            </JSONPostProcessor>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="Verify Consultant Profile Completeness" enabled="true">
-              <stringProp name="scriptLanguage">javascript</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey"></stringProp>
-              <stringProp name="script">// Consultant Profile Score Verification
-
-var profileScore_act = vars.get(&apos;profileCompletenessScore&apos;);
-var locationScore = 5;
-var commuteScore= 5;
-var lookingforScore= 5;
-var aoeScore = 15;
-var titleScore = 5;
-var rateScore = 10;
-var skillsScore = 30;
-var workScore = 10;
-var educationScore = 10;
-var artifactsScore = 5;
-var profileScore_Exp = 0;
-
-var jsonString = prev.getResponseDataAsString(); 
-var obj = JSON.parse(jsonString);
-
-if(obj.address.toString() &amp;&amp; obj.address != &quot;&quot;){
-//	log.info(&quot;Address NOT Empty&quot;);
-	profileScore_Exp += locationScore;
-}
-if(obj.commuteRadius.toString() &amp;&amp; parseInt(obj.commuteRadius) &gt;= 0){
-//	log.info(&quot;Commute NOT Empty&quot;);
-	profileScore_Exp += commuteScore;
-}
-if(obj.workingHours.toString() &amp;&amp; parseInt(obj.workingHours) &gt;= 10){
-//	log.info(&quot;Looking For NOT Empty&quot;);
-	profileScore_Exp += lookingforScore;
-}
-if(obj.areaOfExpertise.toString() &amp;&amp; obj.areaOfExpertise != &quot;&quot;){
-//	log.info(&quot;AOE NOT Empty&quot;);
-	profileScore_Exp += aoeScore;
-}
-if(obj.title.toString() &amp;&amp; obj.title != &quot;&quot;){
-//	log.info(&quot;Title NOT Empty&quot;);
-	profileScore_Exp += titleScore;
-}
-if(obj.hourlyRate.toString() &amp;&amp; obj.hourlyRate != &quot;&quot;){
-//	log.info(&quot;Rate NOT Empty&quot;);
-	profileScore_Exp += rateScore;
-}
-if(obj.skills.toString() &amp;&amp; obj.skills != &quot;&quot;){
-//	log.info(&quot;Skills NOT Empty&quot;);
-	profileScore_Exp += skillsScore;
-}
-if(obj.workExperience.toString() &amp;&amp; obj.workExperience != &quot;&quot;){
-//	log.info(&quot;Work Experience NOT Empty&quot;);
-	profileScore_Exp += workScore;
-}
-if(obj.education != null){
-	if(obj.education.toString() &amp;&amp; obj.education != &quot;&quot;){
-//	log.info(&quot;Education NOT Empty&quot;);
-	profileScore_Exp += educationScore;
-	}
-}
-if(obj.artifacts.toString() &amp;&amp; obj.artifacts != &quot;&quot;){
-//	log.info(&quot;Artifacts NOT Empty&quot;);
-	profileScore_Exp += artifactsScore;
-}
-
-log.info(&quot;Expected Profile Completeness Score &quot; +profileScore_Exp); // Expected sorted array
-log.info(&quot;Actual Profile Completeness Score &quot; +profileScore_act); // Actual Sort value
-
-if(parseInt(profileScore_Exp) != parseInt(profileScore_act)){
-    AssertionResult.setFailure(true);
-    AssertionResult.setFailureMessage(&quot;Completeness Score is incorrect&quot;);
-}
-</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-          </hashTree>
         </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Employer" enabled="true"/>
         <hashTree>
@@ -1006,7 +1049,7 @@ if(parseInt(profileScore_Exp) != parseInt(profileScore_act)){
             <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_IT" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">AOE_IT</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
             </JSONPostProcessor>
             <hashTree/>
@@ -1050,7 +1093,7 @@ if(parseInt(profileScore_Exp) != parseInt(profileScore_act)){
             <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="IT services_Skills" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">Skill57;Skill58;Skill59;Skill60;Skill61</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos;)].skills[0].id;$..[?(@.name == &apos;IT services&apos;)].skills[1].id;$..[?(@.name == &apos;IT services&apos;)].skills[2].id;$..[?(@.name == &apos;IT services&apos;)].skills[3].id;$..[?(@.name == &apos;IT services&apos;)].skills[4].id</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos;)].skills[0].id;$..[?(@.name == &apos;IT Services&apos;)].skills[1].id;$..[?(@.name == &apos;IT Services&apos;)].skills[2].id;$..[?(@.name == &apos;IT Services&apos;)].skills[3].id;$..[?(@.name == &apos;IT Services&apos;)].skills[4].id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
               <stringProp name="Sample.scope">all</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>
@@ -4039,19 +4082,13 @@ vars.put(&quot;jobPostId3&quot;, obj.id);</stringProp>
             <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_IT" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">AOE_IT</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
             </JSONPostProcessor>
             <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_writing" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">AOE_writing</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;Writing &amp; Editing&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
-              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-            </JSONPostProcessor>
-            <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_behavior" enabled="false">
-              <stringProp name="JSONPostProcessor.referenceNames">AOE_behavior</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs"> $.[6].id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
             </JSONPostProcessor>
             <hashTree/>
@@ -4089,7 +4126,7 @@ vars.put(&quot;jobPostId3&quot;, obj.id);</stringProp>
             <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="IT services_Skills" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">Skill57;Skill58;Skill59;Skill60;Skill61</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos;)].skills[0].id;$..[?(@.name == &apos;IT services&apos;)].skills[1].id;$..[?(@.name == &apos;IT services&apos;)].skills[2].id;$..[?(@.name == &apos;IT services&apos;)].skills[3].id;$..[?(@.name == &apos;IT services&apos;)].skills[4].id</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos;)].skills[0].id;$..[?(@.name == &apos;IT Services&apos;)].skills[1].id;$..[?(@.name == &apos;IT Services&apos;)].skills[2].id;$..[?(@.name == &apos;IT Services&apos;)].skills[3].id;$..[?(@.name == &apos;IT Services&apos;)].skills[4].id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
               <stringProp name="Sample.scope">all</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>
@@ -4101,14 +4138,6 @@ vars.put(&quot;jobPostId3&quot;, obj.id);</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
               <stringProp name="Sample.scope">all</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0;0;0;0;0</stringProp>
-            </JSONPostProcessor>
-            <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Behavior_Skills" enabled="false">
-              <stringProp name="JSONPostProcessor.referenceNames">Skill71;Skill72;Skill73;Skill74;Skill75</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;Behavior&apos;)].skills[0].id;$..[?(@.name == &apos;Behavior&apos;)].skills[1].id;$..[?(@.name == &apos;Behavior&apos;)].skills[2].id;$..[?(@.name == &apos;Behavior&apos;)].skills[3].id;$..[?(@.name == &apos;Behavior&apos;)].skills[4].id</stringProp>
-              <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
-              <stringProp name="Sample.scope">all</stringProp>
-              <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
@@ -4293,7 +4322,7 @@ vars.put(&quot;tz&quot;, vars.get(&quot;tzOffset&quot;));</stringProp>
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-	&quot;companyName&quot;: &quot;EmpCompany19&quot;,&#xd;
+	&quot;companyName&quot;: &quot;${__RandomString(10,abcdefghijklmnopqrstuvwxyz,)}&quot;,&#xd;
 	&quot;website&quot;: &quot;&quot;,&#xd;
 	&quot;specialities&quot;: [],&#xd;
 	&quot;additionalSpecialities&quot;: [&quot;Apps&quot;, &quot;DevOps&quot;],&#xd;
@@ -15968,7 +15997,7 @@ catch (Throwable ex) {
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Sorting" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Sorting" enabled="false"/>
         <hashTree>
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Employer" enabled="true"/>
           <hashTree>
@@ -24184,19 +24213,13 @@ if(compare_status == false){
             <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_IT" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">AOE_IT</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
             </JSONPostProcessor>
             <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_writing" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">AOE_writing</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;Writing &amp; Editing&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
-              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-            </JSONPostProcessor>
-            <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_behavior" enabled="false">
-              <stringProp name="JSONPostProcessor.referenceNames">AOE_behavior</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs"> $.[6].id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
             </JSONPostProcessor>
             <hashTree/>
@@ -24234,7 +24257,7 @@ if(compare_status == false){
             <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="IT services_Skills" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">Skill57;Skill58;Skill59;Skill60;Skill61</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos;)].skills[0].id;$..[?(@.name == &apos;IT services&apos;)].skills[1].id;$..[?(@.name == &apos;IT services&apos;)].skills[2].id;$..[?(@.name == &apos;IT services&apos;)].skills[3].id;$..[?(@.name == &apos;IT services&apos;)].skills[4].id</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos;)].skills[0].id;$..[?(@.name == &apos;IT Services&apos;)].skills[1].id;$..[?(@.name == &apos;IT Services&apos;)].skills[2].id;$..[?(@.name == &apos;IT Services&apos;)].skills[3].id;$..[?(@.name == &apos;IT Services&apos;)].skills[4].id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
               <stringProp name="Sample.scope">all</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>
@@ -24246,14 +24269,6 @@ if(compare_status == false){
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
               <stringProp name="Sample.scope">all</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0;0;0;0;0</stringProp>
-            </JSONPostProcessor>
-            <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Behavior_Skills" enabled="false">
-              <stringProp name="JSONPostProcessor.referenceNames">Skill71;Skill72;Skill73;Skill74;Skill75</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;Behavior&apos;)].skills[0].id;$..[?(@.name == &apos;Behavior&apos;)].skills[1].id;$..[?(@.name == &apos;Behavior&apos;)].skills[2].id;$..[?(@.name == &apos;Behavior&apos;)].skills[3].id;$..[?(@.name == &apos;Behavior&apos;)].skills[4].id</stringProp>
-              <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
-              <stringProp name="Sample.scope">all</stringProp>
-              <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
@@ -25388,16 +25403,7 @@ for ( def i = 0 ; i &lt; json.data.size() ; i++ ){
                 <intProp name="Assertion.test_type">48</intProp>
               </ResponseAssertion>
               <hashTree/>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyBehavSkillExist" enabled="false">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="448937705">${Skill71}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">true</boolProp>
-                <intProp name="Assertion.test_type">48</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyCategoryNotExist" enabled="true">
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyCategoryNotExist" enabled="false">
                 <collectionProp name="Asserion.test_strings">
                   <stringProp name="1863309078">${AOE_marketing}</stringProp>
                 </collectionProp>
@@ -25471,16 +25477,7 @@ for ( def i = 0 ; i &lt; json.data.size() ; i++ ){
                 <intProp name="Assertion.test_type">48</intProp>
               </ResponseAssertion>
               <hashTree/>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyBehavSkillExist" enabled="false">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="448937736">${Skill72}</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-                <boolProp name="Assertion.assume_success">true</boolProp>
-                <intProp name="Assertion.test_type">48</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyCategoryNotExist" enabled="true">
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyCategoryNotExist" enabled="false">
                 <collectionProp name="Asserion.test_strings">
                   <stringProp name="1863309078">${AOE_marketing}</stringProp>
                 </collectionProp>
@@ -27608,52 +27605,52 @@ vars.put(&quot;jobPostId&quot;, obj.id);</stringProp>
                     <stringProp name="Argument.value">{&#xd;
     &quot;skills&quot;: [&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:64&quot;,&#xd;
+           &quot;id&quot;: &quot;${Skill64}&quot;,&#xd;
             &quot;rank&quot;: 1,&#xd;
             &quot;experience&quot;: 3&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:59&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill59}&quot;,&#xd;
             &quot;rank&quot;: 2,&#xd;
             &quot;experience&quot;: 0&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:60&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill60}&quot;,&#xd;
             &quot;rank&quot;: 3,&#xd;
             &quot;experience&quot;: 1&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:61&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill61}&quot;,&#xd;
             &quot;rank&quot;: 4,&#xd;
             &quot;experience&quot;: 2&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:66&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill66}&quot;,&#xd;
             &quot;rank&quot;: 5,&#xd;
             &quot;experience&quot;: 4&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:67&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill67}&quot;,&#xd;
             &quot;rank&quot;: 6,&#xd;
             &quot;experience&quot;: 2&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:68&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill68}&quot;,&#xd;
             &quot;rank&quot;: 7,&#xd;
             &quot;experience&quot;: 0&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:69&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill69}&quot;,&#xd;
             &quot;rank&quot;: 8,&#xd;
             &quot;experience&quot;: 5&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:70&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill70}&quot;,&#xd;
             &quot;rank&quot;: 9,&#xd;
             &quot;experience&quot;: 1&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:63&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill63}&quot;,&#xd;
             &quot;rank&quot;: 10,&#xd;
             &quot;experience&quot;: 3&#xd;
         }&#xd;
@@ -27661,11 +27658,11 @@ vars.put(&quot;jobPostId&quot;, obj.id);</stringProp>
     &quot;workingHours&quot;: 30,&#xd;
     &quot;areaOfExpertise&quot;: [&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;16:5&quot;,&#xd;
+           &quot;id&quot;: &quot;${AOE_writing}&quot;,&#xd;
             &quot;experience&quot;: 10&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;16:4&quot;,&#xd;
+          &quot;id&quot;: &quot;${AOE_IT}&quot;,&#xd;
             &quot;experience&quot;: 11&#xd;
         }&#xd;
     ],&#xd;
@@ -30370,37 +30367,37 @@ vars.put(&quot;jobPostId&quot;, obj.id);</stringProp>
                     <stringProp name="Argument.value">{&#xd;
     &quot;skills&quot;: [&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:62&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill62}&quot;,&#xd;
             &quot;rank&quot;: 1,&#xd;
             &quot;experience&quot;: 8&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:63&quot;,&#xd;
+             &quot;id&quot;: &quot;${Skill63}&quot;,&#xd;
             &quot;rank&quot;: 2,&#xd;
             &quot;experience&quot;: 9&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:64&quot;,&#xd;
+             &quot;id&quot;: &quot;${Skill64}&quot;,&#xd;
             &quot;rank&quot;: 3,&#xd;
             &quot;experience&quot;: 8&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:65&quot;,&#xd;
+             &quot;id&quot;: &quot;${Skill65}&quot;,&#xd;
             &quot;rank&quot;: 4,&#xd;
             &quot;experience&quot;: 9&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:66&quot;,&#xd;
+             &quot;id&quot;: &quot;${Skill66}&quot;,&#xd;
             &quot;rank&quot;: 5,&#xd;
             &quot;experience&quot;: 10&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:67&quot;,&#xd;
+            &quot;id&quot;: &quot;${Skill67}&quot;,&#xd;
             &quot;rank&quot;: 6,&#xd;
             &quot;experience&quot;: 8&#xd;
         },&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;17:68&quot;,&#xd;
+             &quot;id&quot;: &quot;${Skill68}&quot;,&#xd;
             &quot;rank&quot;: 7,&#xd;
             &quot;experience&quot;: 9&#xd;
         }&#xd;
@@ -30408,7 +30405,7 @@ vars.put(&quot;jobPostId&quot;, obj.id);</stringProp>
     &quot;workingHours&quot;: 30,&#xd;
     &quot;areaOfExpertise&quot;: [&#xd;
         {&#xd;
-            &quot;id&quot;: &quot;16:5&quot;,&#xd;
+            &quot;id&quot;: &quot;${AOE_writing}&quot;,&#xd;
             &quot;experience&quot;: 10&#xd;
         }&#xd;
     ],&#xd;
@@ -31989,7 +31986,7 @@ artifact&#xd;
               <hashTree/>
               <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_IT" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">AOE_IT</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               </JSONPostProcessor>
               <hashTree/>
@@ -32033,7 +32030,7 @@ artifact&#xd;
               <hashTree/>
               <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="IT services_Skills" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">Skill57;Skill58;Skill59;Skill60;Skill61</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos;)].skills[0].id;$..[?(@.name == &apos;IT services&apos;)].skills[1].id;$..[?(@.name == &apos;IT services&apos;)].skills[2].id;$..[?(@.name == &apos;IT services&apos;)].skills[3].id;$..[?(@.name == &apos;IT services&apos;)].skills[4].id</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos;)].skills[0].id;$..[?(@.name == &apos;IT Services&apos;)].skills[1].id;$..[?(@.name == &apos;IT Services&apos;)].skills[2].id;$..[?(@.name == &apos;IT Services&apos;)].skills[3].id;$..[?(@.name == &apos;IT Services&apos;)].skills[4].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
                 <stringProp name="Sample.scope">all</stringProp>
                 <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>
@@ -32116,7 +32113,7 @@ log.info(postedData);
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="CosnultantProfileSettings" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="ConsultantProfileSettings" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -32499,19 +32496,13 @@ log.info(postedData);
               <hashTree/>
               <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_IT" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">AOE_IT</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               </JSONPostProcessor>
               <hashTree/>
               <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_writing" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">AOE_writing</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;Writing &amp; Editing&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
-                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-              </JSONPostProcessor>
-              <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_behavior" enabled="false">
-                <stringProp name="JSONPostProcessor.referenceNames">AOE_behavior</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs"> $.[6].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               </JSONPostProcessor>
               <hashTree/>
@@ -32549,7 +32540,7 @@ log.info(postedData);
               <hashTree/>
               <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="IT services_Skills" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">Skill57;Skill58;Skill59;Skill60;Skill61</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos;)].skills[0].id;$..[?(@.name == &apos;IT services&apos;)].skills[1].id;$..[?(@.name == &apos;IT services&apos;)].skills[2].id;$..[?(@.name == &apos;IT services&apos;)].skills[3].id;$..[?(@.name == &apos;IT services&apos;)].skills[4].id</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos;)].skills[0].id;$..[?(@.name == &apos;IT Services&apos;)].skills[1].id;$..[?(@.name == &apos;IT Services&apos;)].skills[2].id;$..[?(@.name == &apos;IT Services&apos;)].skills[3].id;$..[?(@.name == &apos;IT Services&apos;)].skills[4].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
                 <stringProp name="Sample.scope">all</stringProp>
                 <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>
@@ -32561,14 +32552,6 @@ log.info(postedData);
                 <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
                 <stringProp name="Sample.scope">all</stringProp>
                 <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0;0;0;0;0</stringProp>
-              </JSONPostProcessor>
-              <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Behavior_Skills" enabled="false">
-                <stringProp name="JSONPostProcessor.referenceNames">Skill71;Skill72;Skill73;Skill74;Skill75</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;Behavior&apos;)].skills[0].id;$..[?(@.name == &apos;Behavior&apos;)].skills[1].id;$..[?(@.name == &apos;Behavior&apos;)].skills[2].id;$..[?(@.name == &apos;Behavior&apos;)].skills[3].id;$..[?(@.name == &apos;Behavior&apos;)].skills[4].id</stringProp>
-                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
-                <stringProp name="Sample.scope">all</stringProp>
-                <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
@@ -32834,7 +32817,7 @@ vars.put(&quot;invalid_values&quot;, &quot;1234&quot;);
               <hashTree/>
               <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="AOE_IT" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">AOE_IT</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos; &amp;&amp;@.type == &apos;aoe&apos;)].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               </JSONPostProcessor>
               <hashTree/>
@@ -32878,7 +32861,7 @@ vars.put(&quot;invalid_values&quot;, &quot;1234&quot;);
               <hashTree/>
               <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="IT services_Skills" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">Skill57;Skill58;Skill59;Skill60;Skill61</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT services&apos;)].skills[0].id;$..[?(@.name == &apos;IT services&apos;)].skills[1].id;$..[?(@.name == &apos;IT services&apos;)].skills[2].id;$..[?(@.name == &apos;IT services&apos;)].skills[3].id;$..[?(@.name == &apos;IT services&apos;)].skills[4].id</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.name == &apos;IT Services&apos;)].skills[0].id;$..[?(@.name == &apos;IT Services&apos;)].skills[1].id;$..[?(@.name == &apos;IT Services&apos;)].skills[2].id;$..[?(@.name == &apos;IT Services&apos;)].skills[3].id;$..[?(@.name == &apos;IT Services&apos;)].skills[4].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
                 <stringProp name="Sample.scope">all</stringProp>
                 <stringProp name="JSONPostProcessor.defaultValues">0;0;0;0;0</stringProp>

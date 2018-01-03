@@ -1,7 +1,6 @@
 Create/Update,test.description,companyName,website,address1,zipCode1,city1,state1,phone,hq1,hq2,http.path,http.method,input.json,assertion
 Create,Send NULL Company Name,,http://www.google.com,Street Y,55770,Karachi,Pakistan,343302356,true,false,/api/v1/employers,POST,EmployerCreateProfile.json,Company name cannot be empty for employer
 Create,Send BlankSpaces Company Name,  ,http://www.google.com,Street Y,55770,Karachi,Pakistan,343302356,true,false,/api/v1/employers,POST,EmployerCreateProfile.json,Company name cannot be empty for employer
-Create,Send Existing Company Name,abccompany,http://www.google.com,Street Y,55771,Karachi,Pakistan,343302356,true,false,/api/v1/employers,POST,EmployerCreateProfile.json,Employer already exists
 Create,Send Invalid website url,EmpCompany1,abcde.com,Street Y,55771,Karachi,Pakistan,343302356,true,false,/api/v1/employers,POST,EmployerCreateProfile.json,Website Url is invalid
 Create,Send NULL Address1,EmpCompany3,http://www.google.com,,55772,Karachi,Pakistan,343302356,true,false,/api/v1/employers,POST,EmployerCreateProfile.json,Address1 cannot be empty
 Create,Send BlankSpaces Zipcode,EmpCompany4,http://www.google.com,Street Y,  ,Karachi,Pakistan,343302356,true,false,/api/v1/employers,POST,EmployerCreateProfile.json,zipcode cannot be empty
@@ -12,7 +11,6 @@ Create,Send BlankSpaces city,EmpCompany8,http://www.google.com,Street Y,55773,  
 Create,Send Phone = letters,EmpCompany91,http://www.google.com,Street Y,55773,khi,Pakistan,abcdef,true,false,/api/v1/employers,POST,EmployerCreateProfile.json,Phone number can only contain digits or '+', '-', '(', ')' characters
 Create,Send multiple HQ ,EmpCompany9,http://www.google.com,Street Y,55773,khi,Pakistan,3547895,true,true,/api/v1/employers,POST,EmployerCreateProfile.json,There must be atmost one headquarter
 Update,Send BlankSpaces Company Name,  ,http://www.google.com,Street Y,97458,Lahore,pak,343302356,true,false,/api/v1/employers,PUT,EmployerUpdateProfile.json,Company name cannot be empty for employer
-Update,Send Existing Company Name,abc company,http://www.google.com,Street Y,97459,Lahore,pak,343302356,true,false,/api/v1/employers,PUT,EmployerUpdateProfile.json,Company name already exists
 Update,Send Invalid website url,EmpCompany19,www.abcdefg,Street Y,97460,Lahore,pak,343302356,true,false,/api/v1/employers,PUT,EmployerUpdateProfile.json,Website Url is invalid
 Update,Send NULL Address1,EmpCompany12,http://www.google.com,,97461,Lahore,pak,343302356,true,false,/api/v1/employers,PUT,EmployerUpdateProfile.json,Address1 cannot be empty
 Update,Send BlankSpaces Zipcode,EmpCompany13,http://www.google.com,Street Y,  ,lhr,pak,343302356,true,false,/api/v1/employers,PUT,EmployerUpdateProfile.json,zipcode cannot be empty
