@@ -18,12 +18,5 @@ COPY ./tests/ /cherryTests/
 
 RUN /apache-jmeter-3.2/bin/PluginsManagerCMD.sh install jpgc-webdriver,jpgc-casutg,jpgc-cmd,jpgc-dummy,jpgc-ffw,jpgc-fifo,jpgc-functions,jpgc-graphs-basic,jpgc-ggl,jpgc-json,jpgc-perfmon,jpgc-plancheck,jpgc-sense,jpgc-tst
 
-#COPY ./jmeter-lib-dependencies/ /apache-jmeter-3.2/lib/
-#COPY ./jmeter-lib-dependencies/ext/jmeter-plugins-webdriver-1.4.0.jar /apache-jmeter-3.2/lib/ext/jmeter-plugins-webdriver-1.4.0.jar
-#COPY ./jmeter-lib-dependencies/ext/tag-jmeter-extn-1.1.jar /apache-jmeter-3.2/lib/ext/tag-jmeter-extn-1.1.jar
-
 CMD [ "-n", "-t", "Cherry.jmx", "-l", "testreport.jtl" ]
-#CMD [ "-n", "-t", "Cherry.jmx", "-l", "testreport.csv", "-e", "-o", "testfolder" ]
 
-
-#ENTRYPOINT ["sh"]
