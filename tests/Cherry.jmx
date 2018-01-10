@@ -138,15 +138,8 @@ WDS.sampleResult.sampleEnd();
         </HeaderManager>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetSkillsofCategories" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value"></stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.domain">${__P(base_URL)}</stringProp>
           <stringProp name="HTTPSampler.port">${__P(port)}</stringProp>
@@ -258,6 +251,75 @@ WDS.sampleResult.sampleEnd();
           </JSONPostProcessor>
           <hashTree/>
         </hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="SetupItems" enabled="true">
+          <stringProp name="scriptLanguage">javascript</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey"></stringProp>
+          <stringProp name="script">var today1 = new Date();
+var today2 = new Date();
+var today3 = new Date();
+var hour1 = 10;
+var hour2 = 10;
+var hourlyrate = 2;
+
+var emp_rating = 2;
+var cons_rating = 3;
+var review_att1 = &quot;Communication&quot;;
+var review_att2 = &quot;Job Description&quot;;
+
+var comp_name_ex = &quot;${__RandomString(10,abcdefghijklmnopqrstuvwxyz,)}&quot;;
+
+log.info(comp_name_ex);
+
+log.info(today1.getTimezoneOffset()*60*1000);
+log.info(today1.setDate(today1.getDate())) //  current date
+log.info(today2.setDate(today2.getDate() + 2)) // Future Date
+log.info(today3.setDate(today3.getDate() - 5)) // Past Dates
+
+//d2.setHours ( d1.getHours() + 6 );
+
+//log.info(&quot;Actual Date is&quot; + today1.setDate(today1.getDate()))
+log.info(&quot;Current Date with 6 hours add &quot; + today1.setHours(today1.getHours() + 1));
+
+var tz_offset = today1.getTimezoneOffset()*60*1000;
+var date_5 = today1.setHours(today1.getHours() + 1);
+var date_1 = today1.setDate(today1.getDate())
+today2.setDate(today2.getDate() + 2)
+var date_3 = today3.setDate(today3.getDate() - 5)
+var date4_midtime = today1.setHours(0,0,0,0);
+var date_2 = today2.setHours(0,0,0,0);
+
+vars.put(&quot;tzOffset&quot;, tz_offset);
+vars.put(&quot;current_date&quot;, date_1);
+vars.put(&quot;future_date&quot;, date_2);
+vars.put(&quot;past_date&quot;, date_3);
+vars.put(&quot;current_date_midtime&quot;, date4_midtime);
+vars.put(&quot;current_date_addhours&quot;, date_5);
+
+vars.put(&quot;hour_1&quot;, hour1);
+vars.put(&quot;hour_2&quot;, hour2);
+vars.put(&quot;hourly_rate&quot;, hourlyrate);
+
+vars.put(&quot;emp_rating&quot;, emp_rating);
+vars.put(&quot;cons_rating&quot;, cons_rating);
+vars.put(&quot;review_att1&quot;, review_att1);
+vars.put(&quot;review_att2&quot;, review_att2);
+
+vars.put(&quot;invalid_values&quot;, &quot;1234&quot;);
+vars.put(&quot;comp_name&quot;, comp_name_ex);
+
+//vars.put(&quot;jobPostId&quot;, &quot;14:2602&quot;);
+//vars.put(&quot;jobPostId2&quot;, &quot;14:2472&quot;);
+//vars.put(&quot;jobPostId3&quot;, &quot;14:2474&quot;);
+//vars.put(&quot;jobPostId4&quot;, &quot;14:2558&quot;);
+//
+//
+//vars.put(&quot;app_id&quot;, &quot;33:1010&quot;);
+//vars.put(&quot;app_id2&quot;, &quot;32:1028&quot;);
+</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Emp - GetMyProfile" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
@@ -336,7 +398,7 @@ WDS.sampleResult.sampleEnd();
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-	&quot;companyName&quot;: &quot;${__RandomString(10,abcdefghijklmnopqrstuvwxyz,)}&quot;,&#xd;
+	&quot;companyName&quot;: &quot;${comp_name}&quot;,&#xd;
 	&quot;website&quot;: &quot;&quot;,&#xd;
 	&quot;specialities&quot;: [],&#xd;
 	&quot;additionalSpecialities&quot;: [&quot;Apps&quot;, &quot;DevOps&quot;],&#xd;
@@ -478,70 +540,6 @@ WDS.sampleResult.sampleEnd();
           <stringProp name="TestPlan.comments">This Controller provides TermID and Consultant IDs</stringProp>
         </GenericController>
         <hashTree>
-          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="SetupItems" enabled="true">
-            <stringProp name="scriptLanguage">javascript</stringProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="cacheKey"></stringProp>
-            <stringProp name="script">var today1 = new Date();
-var today2 = new Date();
-var today3 = new Date();
-var hour1 = 10;
-var hour2 = 10;
-var hourlyrate = 2;
-
-var emp_rating = 2;
-var cons_rating = 3;
-var review_att1 = &quot;Communication&quot;;
-var review_att2 = &quot;Job Description&quot;;
-
-log.info(today1.getTimezoneOffset()*60*1000);
-log.info(today1.setDate(today1.getDate())) //  current date
-log.info(today2.setDate(today2.getDate() + 2)) // Future Date
-log.info(today3.setDate(today3.getDate() - 5)) // Past Dates
-
-//d2.setHours ( d1.getHours() + 6 );
-
-//log.info(&quot;Actual Date is&quot; + today1.setDate(today1.getDate()))
-log.info(&quot;Current Date with 6 hours add &quot; + today1.setHours(today1.getHours() + 1));
-
-var tz_offset = today1.getTimezoneOffset()*60*1000;
-var date_5 = today1.setHours(today1.getHours() + 1);
-var date_1 = today1.setDate(today1.getDate())
-today2.setDate(today2.getDate() + 2)
-var date_3 = today3.setDate(today3.getDate() - 5)
-var date4_midtime = today1.setHours(0,0,0,0);
-var date_2 = today2.setHours(0,0,0,0);
-
-vars.put(&quot;tzOffset&quot;, tz_offset);
-vars.put(&quot;current_date&quot;, date_1);
-vars.put(&quot;future_date&quot;, date_2);
-vars.put(&quot;past_date&quot;, date_3);
-vars.put(&quot;current_date_midtime&quot;, date4_midtime);
-vars.put(&quot;current_date_addhours&quot;, date_5);
-
-vars.put(&quot;hour_1&quot;, hour1);
-vars.put(&quot;hour_2&quot;, hour2);
-vars.put(&quot;hourly_rate&quot;, hourlyrate);
-
-vars.put(&quot;emp_rating&quot;, emp_rating);
-vars.put(&quot;cons_rating&quot;, cons_rating);
-vars.put(&quot;review_att1&quot;, review_att1);
-vars.put(&quot;review_att2&quot;, review_att2);
-
-vars.put(&quot;invalid_values&quot;, &quot;1234&quot;);
-
-//vars.put(&quot;jobPostId&quot;, &quot;14:2602&quot;);
-//vars.put(&quot;jobPostId2&quot;, &quot;14:2472&quot;);
-//vars.put(&quot;jobPostId3&quot;, &quot;14:2474&quot;);
-//vars.put(&quot;jobPostId4&quot;, &quot;14:2558&quot;);
-//
-//
-//vars.put(&quot;app_id&quot;, &quot;33:1010&quot;);
-//vars.put(&quot;app_id2&quot;, &quot;32:1028&quot;);
-</stringProp>
-          </JSR223Sampler>
-          <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="terms - Term And Condition" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
               <collectionProp name="Arguments.arguments"/>
@@ -4322,7 +4320,7 @@ vars.put(&quot;tz&quot;, vars.get(&quot;tzOffset&quot;));</stringProp>
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-	&quot;companyName&quot;: &quot;${__RandomString(10,abcdefghijklmnopqrstuvwxyz,)}&quot;,&#xd;
+	&quot;companyName&quot;: &quot;${comp_name}&quot;,&#xd;
 	&quot;website&quot;: &quot;&quot;,&#xd;
 	&quot;specialities&quot;: [],&#xd;
 	&quot;additionalSpecialities&quot;: [&quot;Apps&quot;, &quot;DevOps&quot;],&#xd;
@@ -15997,7 +15995,9 @@ catch (Throwable ex) {
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Sorting" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Sorting" enabled="false">
+          <stringProp name="TestPlan.comments">This wont be working along with functional automation scripts</stringProp>
+        </GenericController>
         <hashTree>
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Employer" enabled="true"/>
           <hashTree>
@@ -31818,6 +31818,247 @@ vars.put(&quot;jobPostId&quot;, obj.id);</stringProp>
             </hashTree>
           </hashTree>
         </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="CompanyNameExistCase" enabled="true"/>
+        <hashTree>
+          <com.blazemeter.jmeter.webdriver.phantomjs.PhantomJSDriverConfig guiclass="com.blazemeter.jmeter.webdriver.phantomjs.PhantomJSDriverConfigGui" testclass="com.blazemeter.jmeter.webdriver.phantomjs.PhantomJSDriverConfig" testname="PhantomJS Driver Config" enabled="true">
+            <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+            <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+            <stringProp name="WebDriverConfig.http_host"></stringProp>
+            <intProp name="WebDriverConfig.http_port">8080</intProp>
+            <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+            <stringProp name="WebDriverConfig.https_host"></stringProp>
+            <intProp name="WebDriverConfig.https_port">8080</intProp>
+            <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+            <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+            <stringProp name="WebDriverConfig.socks_host"></stringProp>
+            <intProp name="WebDriverConfig.socks_port">8080</intProp>
+            <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+            <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+            <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+            <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+            <stringProp name="PhantomJSDriverConfig.phantomjs_path">${__P(phantomexe_filepath)}</stringProp>
+            <stringProp name="PhantomJSDriverConfig.phantomjs_cli_args">--web-security=false, --ignore-ssl-errors=true,--webdriver-loglevel=NONE</stringProp>
+            <stringProp name="PhantomJSDriverConfig.phantomjs_ghostdriver_cli_args"></stringProp>
+          </com.blazemeter.jmeter.webdriver.phantomjs.PhantomJSDriverConfig>
+          <hashTree/>
+          <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Employer Login Sampler" enabled="true">
+            <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium); //WebDriver classes
+var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait); //WebDriver classes
+var wait = new support_ui.WebDriverWait(WDS.browser, 5000);
+
+WDS.sampleResult.sampleStart(); //captures sampler&apos;s start time
+WDS.sampleResult.getLatency();
+WDS.log.info(&quot;Sample started&quot;);
+
+WDS.browser.get(&quot;${__P(employer_index_filepath2)}&quot;); //opens website specified in &apos;http://duckduckgo.com&apos; // Update this URL
+WDS.log.info(&quot;Sample ended - navigated to Cherry&quot;);
+
+java.lang.Thread.sleep( 10000 )
+
+var token = WDS.browser.findElement(pkg.By.id(&apos;successAndErrorMessages&apos;));
+WDS.log.info(token.getText());
+var props = org.apache.jmeter.util.JMeterUtils.getJMeterProperties();
+props.put(&apos;empaccesstoken&apos;,token.getText())
+WDS.log.info(props.get(&quot;empaccesstoken&quot;));
+
+WDS.sampleResult.sampleEnd();</stringProp>
+            <stringProp name="WebDriverSampler.parameters"></stringProp>
+            <stringProp name="WebDriverSampler.language">javascript</stringProp>
+          </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CreateEmployer-CompNameExisted" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;companyName&quot;: &quot;${comp_name}&quot;,&#xd;
+	&quot;website&quot;: &quot;&quot;,&#xd;
+	&quot;specialities&quot;: [],&#xd;
+	&quot;additionalSpecialities&quot;: [&quot;Apps&quot;, &quot;DevOps&quot;],&#xd;
+	&quot;companyDescription&quot;: &quot;This is my company&quot;,&#xd;
+	&quot;locations&quot;: [{&#xd;
+		&quot;address1&quot;: &quot;Flat#20&quot;,&#xd;
+		&quot;address2&quot;: &quot;Dhoraji&quot;,&#xd;
+		&quot;city&quot;: &quot;Lahore&quot;,&#xd;
+		&quot;state&quot;: &quot;pak&quot;,&#xd;
+		&quot;zipCode&quot;: &quot;97460&quot;,&#xd;
+		&quot;phone&quot;: &quot;343302356&quot;,&#xd;
+		&quot;isHeadquarter&quot;: true&#xd;
+	}]&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${__P(base_URL)}</stringProp>
+            <stringProp name="HTTPSampler.port">${__P(port)}</stringProp>
+            <stringProp name="HTTPSampler.protocol">${__P(http_protocol)}</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">${__P(api_version)}/employers</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">vars.put(&quot;token&quot;, props.get(&quot;empaccesstoken&quot;))</stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Message" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="1548526857">Employer already exists</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">true</boolProp>
+              <intProp name="Assertion.test_type">48</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyErrorCode" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="51508">400</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">true</boolProp>
+              <intProp name="Assertion.test_type">48</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CreateEmployer" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;companyName&quot;: &quot;${__RandomString(10,abcdefghijklmnopqrstuvwxyz,)}&quot;,&#xd;
+	&quot;website&quot;: &quot;&quot;,&#xd;
+	&quot;specialities&quot;: [],&#xd;
+	&quot;additionalSpecialities&quot;: [&quot;Apps&quot;, &quot;DevOps&quot;],&#xd;
+	&quot;companyDescription&quot;: &quot;This is my company&quot;,&#xd;
+	&quot;locations&quot;: [{&#xd;
+		&quot;address1&quot;: &quot;Flat#20&quot;,&#xd;
+		&quot;address2&quot;: &quot;Dhoraji&quot;,&#xd;
+		&quot;city&quot;: &quot;Lahore&quot;,&#xd;
+		&quot;state&quot;: &quot;pak&quot;,&#xd;
+		&quot;zipCode&quot;: &quot;97460&quot;,&#xd;
+		&quot;phone&quot;: &quot;343302356&quot;,&#xd;
+		&quot;isHeadquarter&quot;: true&#xd;
+	}]&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${__P(base_URL)}</stringProp>
+            <stringProp name="HTTPSampler.port">${__P(port)}</stringProp>
+            <stringProp name="HTTPSampler.protocol">${__P(http_protocol)}</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">${__P(api_version)}/employers</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">vars.put(&quot;token&quot;, props.get(&quot;empaccesstoken&quot;))</stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyStatusCode" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49587">201</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">true</boolProp>
+              <intProp name="Assertion.test_type">48</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateEmployer-CompNameExisted" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;companyName&quot;: &quot;${comp_name}&quot;,&#xd;
+	&quot;website&quot;: &quot;&quot;,&#xd;
+	&quot;specialities&quot;: [],&#xd;
+	&quot;additionalSpecialities&quot;: [&quot;Apps&quot;, &quot;DevOps&quot;],&#xd;
+	&quot;companyDescription&quot;: &quot;This is my company&quot;,&#xd;
+	&quot;locations&quot;: [{&#xd;
+		&quot;address1&quot;: &quot;Flat#20&quot;,&#xd;
+		&quot;address2&quot;: &quot;Dhoraji&quot;,&#xd;
+		&quot;city&quot;: &quot;Lahore&quot;,&#xd;
+		&quot;state&quot;: &quot;pak&quot;,&#xd;
+		&quot;zipCode&quot;: &quot;97460&quot;,&#xd;
+		&quot;phone&quot;: &quot;343302356&quot;,&#xd;
+		&quot;isHeadquarter&quot;: true&#xd;
+	}]&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${__P(base_URL)}</stringProp>
+            <stringProp name="HTTPSampler.port">${__P(port)}</stringProp>
+            <stringProp name="HTTPSampler.protocol">${__P(http_protocol)}</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">${__P(api_version)}/employers</stringProp>
+            <stringProp name="HTTPSampler.method">PUT</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">vars.put(&quot;token&quot;, props.get(&quot;empaccesstoken&quot;))</stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Message" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-640356586">Company name already exists</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">true</boolProp>
+              <intProp name="Assertion.test_type">48</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyErrorCode" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="51508">400</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">true</boolProp>
+              <intProp name="Assertion.test_type">48</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="ConsultantProfile" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -32233,6 +32474,99 @@ log.info(postedData);
             <hashTree/>
           </hashTree>
         </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="LoginAgain" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1505715071000</longProp>
+        <longProp name="ThreadGroup.end_time">1505715071000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <stringProp name="TestPlan.comments">This thread Group takes access token from browser and set it into jmeter property</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <com.blazemeter.jmeter.webdriver.phantomjs.PhantomJSDriverConfig guiclass="com.blazemeter.jmeter.webdriver.phantomjs.PhantomJSDriverConfigGui" testclass="com.blazemeter.jmeter.webdriver.phantomjs.PhantomJSDriverConfig" testname="PhantomJS Driver Config" enabled="true">
+          <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+          <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+          <stringProp name="WebDriverConfig.http_host"></stringProp>
+          <intProp name="WebDriverConfig.http_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+          <stringProp name="WebDriverConfig.https_host"></stringProp>
+          <intProp name="WebDriverConfig.https_port">8080</intProp>
+          <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+          <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+          <stringProp name="WebDriverConfig.socks_host"></stringProp>
+          <intProp name="WebDriverConfig.socks_port">8080</intProp>
+          <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+          <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+          <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+          <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+          <stringProp name="PhantomJSDriverConfig.phantomjs_path">${__P(phantomexe_filepath)}</stringProp>
+          <stringProp name="PhantomJSDriverConfig.phantomjs_cli_args">--web-security=false, --ignore-ssl-errors=true,--webdriver-loglevel=NONE</stringProp>
+          <stringProp name="PhantomJSDriverConfig.phantomjs_ghostdriver_cli_args"></stringProp>
+        </com.blazemeter.jmeter.webdriver.phantomjs.PhantomJSDriverConfig>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Employer Login Sampler" enabled="true">
+          <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium); //WebDriver classes
+var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait); //WebDriver classes
+var wait = new support_ui.WebDriverWait(WDS.browser, 5000);
+
+WDS.sampleResult.sampleStart(); //captures sampler&apos;s start time
+WDS.sampleResult.getLatency();
+WDS.log.info(&quot;Sample started&quot;);
+
+WDS.browser.get(&quot;${__P(employer_index_filepath)}&quot;); //opens website specified in &apos;http://duckduckgo.com&apos; // Update this URL
+WDS.log.info(&quot;Sample ended - navigated to Cherry&quot;);
+
+java.lang.Thread.sleep( 10000 )
+
+var token = WDS.browser.findElement(pkg.By.id(&apos;successAndErrorMessages&apos;));
+WDS.log.info(token.getText());
+var props = org.apache.jmeter.util.JMeterUtils.getJMeterProperties();
+props.put(&apos;empaccesstoken&apos;,token.getText())
+WDS.log.info(props.get(&quot;empaccesstoken&quot;));
+
+WDS.sampleResult.sampleEnd();</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Consultant Login Sampler" enabled="false">
+          <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium); //WebDriver classes
+var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait); //WebDriver classes
+var wait = new support_ui.WebDriverWait(WDS.browser, 5000);
+
+WDS.sampleResult.sampleStart(); //captures sampler&apos;s start time
+WDS.sampleResult.getLatency();
+WDS.log.info(&quot;Sample started&quot;);
+
+WDS.log.info(&quot;${__P(consultant_index_filepath)}&quot;);
+
+//var url_path = props.get(&apos;consultant_index_filepath&apos;)
+
+WDS.browser.get(&quot;${__P(consultant_index_filepath)}&quot;); //opens website specified in &apos;http://duckduckgo.com&apos; // Update this URL
+WDS.log.info(&quot;Sample ended - navigated to Cherry&quot;);
+
+java.lang.Thread.sleep( 10000 )
+
+var token = WDS.browser.findElement(pkg.By.id(&apos;successAndErrorMessages&apos;));
+WDS.log.info(token.getText());
+var props = org.apache.jmeter.util.JMeterUtils.getJMeterProperties();
+props.put(&apos;consaccesstoken&apos;,token.getText())
+WDS.log.info(props.get(&quot;consaccesstoken&quot;));
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="EmployerProfile" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>

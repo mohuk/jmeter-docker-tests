@@ -7,6 +7,7 @@ var userData =  {
 	cons_pw : '$adaF123',
 	//cons_pw : 'Cherry!1',
     emp_email : 'ismailfarooq@yopmail.com',
+	emp_email2 : 'hassandevemp102@yopmail.com',
 	//emp_email : 's8e1@yopmail.com',
 	//emp_email : 'emp321@yopmail.com',
 	//emp_email: 'suzair12342@yopmail.com',
