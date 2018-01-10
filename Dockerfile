@@ -16,7 +16,7 @@ RUN mkdir -p /cherryTests
 WORKDIR /cherryTests
 COPY ./tests/ /cherryTests/
 
-RUN /apache-jmeter-3.2/bin/PluginsManagerCMD.sh install jpgc-webdriver,jpgc-casutg,jpgc-cmd,jpgc-dummy,jpgc-ffw,jpgc-fifo,jpgc-functions,jpgc-graphs-basic,jpgc-ggl,jpgc-json,jpgc-perfmon,jpgc-plancheck,jpgc-sense,jpgc-tst
+RUN /apache-jmeter-3.2/bin/PluginsManagerCMD.sh install jpgc-webdriver,jpgc-json
 
 CMD [ "-n", "-t", "Cherry.jmx", "-l", "testreport.jtl" ]
 
