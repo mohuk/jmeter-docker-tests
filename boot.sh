@@ -89,8 +89,16 @@ echo "Starting Testing Container"
 docker build -t cherry-test .
 docker run --name cherrytest --network=cherry cherry-test
 TEST_CONTAINER_ID=$(docker ps -aq --filter name=cherrytest)
-docker cp $TEST_CONTAINER_ID:/cherryTests/testreport.jtl ./testreport.jtl
 
+while read -r line_of_output; do
+  SUCCESSFUL_EXECUTION=$line_of_output
+done < <(docker cp $TEST_CONTAINER_ID:/cherryTests/testreport.jtl ./testreport.jtl 2>&1)
+if [ ! -z "$SUCCESSFUL_EXECUTION" ]
+    then
+        echo "Error occurred while test execution.";
+        networkTearDown
+        exit 1;
+fi
 
 TEST_RESULT=$( awk -F "\"*,\"*" '{print $8}' testreport.jtl | grep false )
 if [ ! -z "$TEST_RESULT" ]
